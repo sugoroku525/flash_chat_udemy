@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "43552750692",
+    "project_id": "flash-chat-d8991",
+    "storage_bucket": "flash-chat-d8991.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43552750692:android:9988276001a4ecf004f371",
+        "android_client_info": {
+          "package_name": "co.sugoroku.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43552750692-9tv4nue8knu9j76skuue3hdm5jouo6oa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClNLzSv306itjs9tE8ETUWXEaUpyk8JjM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "43552750692-9tv4nue8knu9j76skuue3hdm5jouo6oa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
