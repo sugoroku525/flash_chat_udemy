@@ -10,7 +10,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-
+  final messageTextController = TextEditingController();
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
   String messageText;
@@ -73,11 +73,11 @@ class _ChatScreenState extends State<ChatScreen> {
               if(!snapshot.hasData){
                 return Center(child: CircularProgressIndicator(backgroundColor: Colors.lightBlueAccent,),);
               }
-                 final messages = snapshot.data.docs;
+                 final messages = snapshot.data.docs.reversed;
                 List<MessageBubble> messageBubbles = [];
                 for (var message in messages){
-                  final messageText = message.data['text'];
-                  final messageSender = message.data['sender'];
+                  final messageText = message['text'];
+                  final messageSender = message['sender'];
                 
                 final messageBubble = MessageBubble(sender:messageSender,text:messageText);
                 messageBubbles.add(messageBubble);
@@ -85,7 +85,7 @@ class _ChatScreenState extends State<ChatScreen> {
               return Expanded(
                 child: ListView(
                   padding:EdgeInsets.symmetric(horizontal:10.0, vertical: 20.0),
-                  children: messageBubble,
+                  children: messageBubbles,
                 ),
               );
               }
@@ -100,6 +100,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
+                      controller: messageTextController,
                       onChanged: (value) {
                         messageText = value;
                       },
@@ -108,6 +109,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   FlatButton(
                     onPressed: () {
+                      messageTextController.clear();
                       _firestore.collection('messages').add({
                         'text':messageText,
                         'sender':loggedInUser.email
